@@ -1,12 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
 import Home from "./screens/Home/Home.jsx";
 import Doctors from "./screens/Doctors/Doctors.jsx";
 import Notifications from "./screens/Notifications/Notifications.jsx";
 import Profile from "./screens/Profile/Profile.jsx";
-
+import InfoDoctor from "./screens/Doctors/InfoDoctor.jsx";
+import Cita from './screens/Doctors/Appointment.jsx'
+import Category from './screens/Doctors/Category.jsx'
 //icons
 import {
   Entypo,
@@ -15,13 +18,60 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 
+const DoctorStack = createStackNavigator();
+
+//StackCreado
+function StackDoctor() {
+  return (
+    <DoctorStack.Navigator initialRouteName="Categorias">
+      <DoctorStack.Screen
+        name="Categorias"
+        component={Category}
+        options={{
+        }}
+      />
+      <DoctorStack.Screen
+        name="Doctores"
+        component={Doctors}
+        options={{
+          headerTitleAlign: "center",
+        }}
+      />
+      <DoctorStack.Screen
+        name="Detalles del doctor"
+        component={InfoDoctor}
+        options={{
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#18A0FB",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+      <DoctorStack.Screen
+        name="Agendar cita"
+        component={Cita}
+        options={{
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#18A0FB",
+          },
+          headerTintColor: "#fff",
+        }}
+      />
+    </DoctorStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{ tabBarActiveTintColor: "#18A0FB" }}
+      initialRouteName="Doctors"
+      screenOptions={{
+        tabBarActiveTintColor: "#18A0FB",
+      }}
     >
       <Tab.Screen
         name="Home"
@@ -34,8 +84,9 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Doctors"
-        component={Doctors}
+        component={StackDoctor}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="stethoscope" size={size} color={color} />
           ),
