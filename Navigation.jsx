@@ -10,6 +10,8 @@ import Profile from "./screens/Profile/Profile.jsx";
 import InfoDoctor from "./screens/Doctors/InfoDoctor.jsx";
 import Cita from './screens/Doctors/Appointment.jsx'
 import Category from './screens/Doctors/Category.jsx'
+import Login from "./screens/Login/Login.jsx";
+import ForgotPassword from "./screens/Login/ForgotPassword.jsx";
 //icons
 import {
   Entypo,
@@ -17,8 +19,44 @@ import {
   Ionicons,
   FontAwesome5,
 } from "@expo/vector-icons";
+import Register from "./screens/Login/Register.jsx";
+import VerifyCode from "./screens/Login/VerifyCode.jsx";
+import RecoverPassword from "./screens/Login/RecoverPassword.jsx";
 
 const DoctorStack = createStackNavigator();
+const LoginStack = createStackNavigator();
+
+// stack
+function StackLogin(){
+  return(
+    <LoginStack.Navigator initialRouteName="Iniciar sesion">
+      <LoginStack.Screen
+        name="Iniciar sesion"
+        component={Login}
+      ></LoginStack.Screen>
+      <LoginStack.Screen
+        name="Olvidé mi contraseña"
+        component={ForgotPassword}
+      >
+      </LoginStack.Screen>
+      <LoginStack.Screen
+        name="Registrarse"
+        component={Register}
+      >
+      </LoginStack.Screen>
+      <LoginStack.Screen
+        name="Código de verificación"
+        component={VerifyCode}
+      ></LoginStack.Screen>
+      <LoginStack.Screen
+        name="Restablecer contraseña"
+        component={RecoverPassword}
+      >
+
+      </LoginStack.Screen>
+    </LoginStack.Navigator>
+  )
+}
 
 //StackCreado
 function StackDoctor() {
@@ -73,6 +111,13 @@ function MyTabs() {
         tabBarActiveTintColor: "#18A0FB",
       }}
     >
+      <Tab.Screen
+        name="Login"
+        component={StackLogin}
+        options={{ tabBarIcon: ({ color, size }) => (<Entypo name="login" size={size} color={color} />) }}
+      >
+
+      </Tab.Screen>
       <Tab.Screen
         name="Home"
         component={Home}
