@@ -7,8 +7,11 @@ import doctor from "../../assets/doctor_h.png";
 import pastillas from "../../assets/pastillas_h.png";
 import Doctor from "../../assets/doctor-h.png";
 import recetas from "../../assets/recetas_h.png";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <View className="p-4">
       <View className="flex flex-row items-center justify-between">
@@ -20,7 +23,9 @@ const Home = () => {
           </View>
         </View>
         <View>
-          <FontAwesome5 name="bell" size={32} color="black" />
+          <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
+            <FontAwesome5 name="bell" size={32} color="black" />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -70,43 +75,59 @@ const Home = () => {
         className="gap-2 mt-2"
         showsHorizontalScrollIndicator={false}
       >
-        <View className='h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4'>
-          <Image source={Doctor} className='w-[95px]' />
-          <View className=''>
-            <Text className='text-lg'>Dr. Alex Sánchez</Text>
-            <Text className='opacity-50 text-xs'>¿Has tenido una cita con él?</Text>
-            <TouchableOpacity className='flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]'>
-              <Text className='text-white opacity-100 font-semibold'>Calificalo</Text>
+        <View className="h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4">
+          <Image source={Doctor} className="w-[95px]" />
+          <View className="">
+            <Text className="text-lg">Dr. Alex Sánchez</Text>
+            <Text className="opacity-50 text-xs">
+              ¿Has tenido una cita con él?
+            </Text>
+            <TouchableOpacity className="flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]">
+              <Text className="text-white opacity-100 font-semibold">
+                Calificalo
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View className='h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4'>
-          <Image source={Doctor} className='w-[95px]' />
-          <View className=''>
-            <Text className='text-lg'>Dr. Alex Sánchez</Text>
-            <Text className='opacity-50 text-xs'>¿Has tenido una cita con él?</Text>
-            <TouchableOpacity className='flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]'>
-              <Text className='text-white opacity-100 font-semibold'>Calificalo</Text>
+        <View className="h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4">
+          <Image source={Doctor} className="w-[95px]" />
+          <View className="">
+            <Text className="text-lg">Dr. Alex Sánchez</Text>
+            <Text className="opacity-50 text-xs">
+              ¿Has tenido una cita con él?
+            </Text>
+            <TouchableOpacity className="flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]">
+              <Text className="text-white opacity-100 font-semibold">
+                Calificalo
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View className='h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4'>
-          <Image source={Doctor} className='w-[95px]' />
-          <View className=''>
-            <Text className='text-lg'>Dr. Alex Sánchez</Text>
-            <Text className='opacity-50 text-xs'>¿Has tenido una cita con él?</Text>
-            <TouchableOpacity className='flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]'>
-              <Text className='text-white opacity-100 font-semibold'>Calificalo</Text>
+        <View className="h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4">
+          <Image source={Doctor} className="w-[95px]" />
+          <View className="">
+            <Text className="text-lg">Dr. Alex Sánchez</Text>
+            <Text className="opacity-50 text-xs">
+              ¿Has tenido una cita con él?
+            </Text>
+            <TouchableOpacity className="flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]">
+              <Text className="text-white opacity-100 font-semibold">
+                Calificalo
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View className='h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4'>
-          <Image source={Doctor} className='w-[95px]' />
-          <View className=''>
-            <Text className='text-lg'>Dr. Alex Sánchez</Text>
-            <Text className='opacity-50 text-xs'>¿Has tenido una cita con él?</Text>
-            <TouchableOpacity className='flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]'>
-              <Text className='text-white opacity-100 font-semibold'>Calificalo</Text>
+        <View className="h-[180px] w-[300px] bg-white rounded-md flex flex-row p-4">
+          <Image source={Doctor} className="w-[95px]" />
+          <View className="">
+            <Text className="text-lg">Dr. Alex Sánchez</Text>
+            <Text className="opacity-50 text-xs">
+              ¿Has tenido una cita con él?
+            </Text>
+            <TouchableOpacity className="flex items-center justify-center h-8 rounded-md mt-6 bg-[#18A0FB]">
+              <Text className="text-white opacity-100 font-semibold">
+                Calificalo
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

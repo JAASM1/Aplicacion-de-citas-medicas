@@ -105,21 +105,14 @@ function StackDoctor() {
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MainTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Doctors"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: "#18A0FB",
       }}
     >
-      <Tab.Screen
-        name="Login"
-        component={StackLogin}
-        options={{ tabBarIcon: ({ color, size }) => (<Entypo name="login" size={size} color={color} />) }}
-      >
-
-      </Tab.Screen>
       <Tab.Screen
         name="Home"
         component={Home}
@@ -161,10 +154,28 @@ function MyTabs() {
   );
 }
 
+const RootStack = createStackNavigator();
+
+function RootNavigator() {
+  return (
+    <RootStack.Navigator initialRouteName="Login" screenOptions={{headerShown: false}}>
+      <RootStack.Screen
+        name="Tabs"
+        component={MainTabs}
+      />
+      <RootStack.Screen
+        name="Login"
+        component={StackLogin}
+      />
+      
+    </RootStack.Navigator>
+  );
+}
+
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <RootNavigator />
     </NavigationContainer>
   );
 }
