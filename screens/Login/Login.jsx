@@ -1,17 +1,41 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, TouchableOpacity } from "react-native";
+import { View, TextInput, Text, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    //Aquí se hace la llamada de api para el login cuando implementemos back
-    navigation.navigate("Tabs", { screen: "Home" });
+  const handleLogin = async () => {
+    try {
+      const response = await fetch("http://192.168.1.75:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Error en la solicitud");
+      }
+
+
+
+      // Navegar a la pantalla de inicio o cualquier otra pantalla deseada
+      navigation.navigate("Tabs", { screen: "Home" });
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", error.message);
+    }
   };
 
   return (
@@ -19,10 +43,10 @@ const Login = () => {
       <Text className="font-semibold text-2xl my-12 mx-6">Bienvenido</Text>
       <View className="flex flex-col space-y-6">
         <TextInput
-          placeholder="Nombre"
+          placeholder="Correo electrónico"
           className="mx-6 h-16 rounded-md px-4 bg-white"
-          value={name}
-          onChangeText={(text) => setName(text)}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
         ></TextInput>
         <TextInput
           placeholder="Contraseña"

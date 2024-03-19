@@ -11,7 +11,7 @@
   "dependencies": {
     "@expo/webpack-config": "~19.0.1",
     "@react-navigation/bottom-tabs": "^6.5.12",
-    "@react-navigation/native": "^6.1.10",
+    "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.21",
     "crypto": "^1.0.1",
     "crypto-browserify": "^3.12.0",
