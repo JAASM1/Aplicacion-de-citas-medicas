@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://192.168.1.75:3000/login", {
+      const response = await fetch("http://192.168.3.207:3000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,15 +22,18 @@ const Login = () => {
         }),
       });
 
-      const data = await response.json();
+
+      // const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Error en la solicitud");
       }
 
-
-
-      // Navegar a la pantalla de inicio o cualquier otra pantalla deseada
+      const responseData = await response.text();
+      const parts = responseData.split('.');
+      const decodedPayload = JSON.parse(atob(parts[1]));
+  
+      console.log("Redirrecion a home")
       navigation.navigate("Tabs", { screen: "Home" });
     } catch (error) {
       console.error(error);
