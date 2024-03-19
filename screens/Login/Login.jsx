@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { View, TextInput, Text, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import {URL} from '@env';
+import base64 from 'react-native-base64'
+
 
 const Login = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +15,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://192.168.3.207:3000/login", {
+      const response = await fetch(URL + "/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,15 +28,14 @@ const Login = () => {
 
 
       // const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Error en la solicitud");
-      }
-
       const responseData = await response.text();
       const parts = responseData.split('.');
-      const decodedPayload = JSON.parse(atob(parts[1]));
+      const decodedPayload = JSON.parse(base64.decode(parts[1]));
   
+      if (!response.ok) {
+        throw new Error(responseData.message || "Error en la solicitud");
+      }
+
       console.log("Redirrecion a home")
       navigation.navigate("Tabs", { screen: "Home" });
     } catch (error) {

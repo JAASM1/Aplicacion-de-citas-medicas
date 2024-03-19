@@ -4,6 +4,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 function Register() {
+
+  const URL = process.env.EXPO_PUBLIC_API_URL;
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +15,7 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch("http://192.168.3.207:3000/user", {
+      const response = await fetch(URL + "/user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
