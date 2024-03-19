@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -8,8 +8,34 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigation = useNavigation();
 
-  const navigation = useNavigation()
+  const handleRegister = async () => {
+    try {
+      const response = await fetch("http://192.168.1.75:3000/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: name,
+          email: email,
+          password: password,
+        }),
+      });
+
+
+      if (!response.ok) {
+        throw new Error("Error al registrar el usuario");
+      }
+
+      Alert.alert("Registro exitoso", "¡Cuenta creada correctamente!");
+      navigation.navigate("Iniciar sesion");
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Ocurrió un error al intentar registrarse");
+    }
+  };
 
   return (
     <View className="container w-full h-screen bg-[#f8f8f8]">
@@ -47,6 +73,7 @@ function Register() {
       </View>
       <View className="mt-12 flex flex-col justify-center items-center">
         <TouchableOpacity
+            onPress={handleRegister}
             className="bg-[#18A0FB] rounded-2xl mx-6 h-16 w-[80%] flex justify-center items-center"
         >
             <Text className="text-center text-white text-lg font-semibold">Crear cuenta</Text>
